@@ -8,20 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		9EB78EB22188A99400C0A45E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB78EB12188A99400C0A45E /* AppDelegate.swift */; };
-		9EB78EB42188A99400C0A45E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB78EB32188A99400C0A45E /* ViewController.swift */; };
+		9EB78EB42188A99400C0A45E /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB78EB32188A99400C0A45E /* PasswordViewController.swift */; };
 		9EB78EB72188A99400C0A45E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EB78EB52188A99400C0A45E /* Main.storyboard */; };
 		9EB78EB92188A99700C0A45E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9EB78EB82188A99700C0A45E /* Assets.xcassets */; };
 		9EB78EBC2188A99700C0A45E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EB78EBA2188A99700C0A45E /* LaunchScreen.storyboard */; };
+		9EB78EC42188CCE500C0A45E /* lock.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9EB78EC32188CCE500C0A45E /* lock.jpeg */; };
+		9EB78EC62188CE9500C0A45E /* ListOfTasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB78EC52188CE9500C0A45E /* ListOfTasksViewController.swift */; };
+		9EB78EC82188D4F400C0A45E /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB78EC72188D4F400C0A45E /* Alert.swift */; };
+		9EB78ECD2188DF7E00C0A45E /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB78ECC2188DF7E00C0A45E /* TaskTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9EB78EAE2188A99400C0A45E /* Task Manager iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Task Manager iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EB78EB12188A99400C0A45E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9EB78EB32188A99400C0A45E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9EB78EB32188A99400C0A45E /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
 		9EB78EB62188A99400C0A45E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9EB78EB82188A99700C0A45E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9EB78EBB2188A99700C0A45E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9EB78EBD2188A99700C0A45E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9EB78EC32188CCE500C0A45E /* lock.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = lock.jpeg; path = "../../../../Images and Stuff/lock.jpeg"; sourceTree = "<group>"; };
+		9EB78EC52188CE9500C0A45E /* ListOfTasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfTasksViewController.swift; sourceTree = "<group>"; };
+		9EB78EC72188D4F400C0A45E /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		9EB78ECC2188DF7E00C0A45E /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +62,42 @@
 		9EB78EB02188A99400C0A45E /* Task Manager iOS */ = {
 			isa = PBXGroup;
 			children = (
+				9EB78ECF2188E5F600C0A45E /* Utilities */,
+				9EB78ECE2188E37300C0A45E /* Storyboards */,
+				9EB78EC92188DAC600C0A45E /* View Controllers */,
 				9EB78EB12188A99400C0A45E /* AppDelegate.swift */,
-				9EB78EB32188A99400C0A45E /* ViewController.swift */,
-				9EB78EB52188A99400C0A45E /* Main.storyboard */,
 				9EB78EB82188A99700C0A45E /* Assets.xcassets */,
-				9EB78EBA2188A99700C0A45E /* LaunchScreen.storyboard */,
+				9EB78EC32188CCE500C0A45E /* lock.jpeg */,
 				9EB78EBD2188A99700C0A45E /* Info.plist */,
 			);
 			path = "Task Manager iOS";
+			sourceTree = "<group>";
+		};
+		9EB78EC92188DAC600C0A45E /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9EB78EB32188A99400C0A45E /* PasswordViewController.swift */,
+				9EB78EC52188CE9500C0A45E /* ListOfTasksViewController.swift */,
+				9EB78ECC2188DF7E00C0A45E /* TaskTableViewCell.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		9EB78ECE2188E37300C0A45E /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				9EB78EB52188A99400C0A45E /* Main.storyboard */,
+				9EB78EBA2188A99700C0A45E /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		9EB78ECF2188E5F600C0A45E /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				9EB78EC72188D4F400C0A45E /* Alert.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,6 +160,7 @@
 			files = (
 				9EB78EBC2188A99700C0A45E /* LaunchScreen.storyboard in Resources */,
 				9EB78EB92188A99700C0A45E /* Assets.xcassets in Resources */,
+				9EB78EC42188CCE500C0A45E /* lock.jpeg in Resources */,
 				9EB78EB72188A99400C0A45E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -135,7 +172,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9EB78EB42188A99400C0A45E /* ViewController.swift in Sources */,
+				9EB78EB42188A99400C0A45E /* PasswordViewController.swift in Sources */,
+				9EB78EC62188CE9500C0A45E /* ListOfTasksViewController.swift in Sources */,
+				9EB78ECD2188DF7E00C0A45E /* TaskTableViewCell.swift in Sources */,
+				9EB78EC82188D4F400C0A45E /* Alert.swift in Sources */,
 				9EB78EB22188A99400C0A45E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
