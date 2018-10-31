@@ -13,6 +13,7 @@ class ListOfTasksViewController: UIViewController {
     
     @IBOutlet weak var filterSwitch: UISwitch!
     
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()

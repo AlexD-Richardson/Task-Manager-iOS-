@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E5B7F25218A31D700B35288 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5B7F24218A31D700B35288 /* Task.swift */; };
 		9EB78EB22188A99400C0A45E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB78EB12188A99400C0A45E /* AppDelegate.swift */; };
 		9EB78EB42188A99400C0A45E /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB78EB32188A99400C0A45E /* PasswordViewController.swift */; };
 		9EB78EB72188A99400C0A45E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EB78EB52188A99400C0A45E /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9E5B7F24218A31D700B35288 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		9EB78EAE2188A99400C0A45E /* Task Manager iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Task Manager iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EB78EB12188A99400C0A45E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9EB78EB32188A99400C0A45E /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 				9EB78EB82188A99700C0A45E /* Assets.xcassets */,
 				9EB78EC32188CCE500C0A45E /* lock.jpeg */,
 				9EB78EBD2188A99700C0A45E /* Info.plist */,
+				9E5B7F24218A31D700B35288 /* Task.swift */,
 			);
 			path = "Task Manager iOS";
 			sourceTree = "<group>";
@@ -176,6 +179,7 @@
 				9EB78EC62188CE9500C0A45E /* ListOfTasksViewController.swift in Sources */,
 				9EB78ECD2188DF7E00C0A45E /* TaskTableViewCell.swift in Sources */,
 				9EB78EC82188D4F400C0A45E /* Alert.swift in Sources */,
+				9E5B7F25218A31D700B35288 /* Task.swift in Sources */,
 				9EB78EB22188A99400C0A45E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
