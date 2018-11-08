@@ -12,7 +12,7 @@ class PasswordViewController: UIViewController {
 
     @IBOutlet weak var passwordTextField: UITextField!
     
-    let password = "I miss Brian"
+    let password = "Hi"
     
     
     override func viewDidLoad() {
