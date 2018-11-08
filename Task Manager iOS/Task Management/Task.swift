@@ -18,11 +18,11 @@ class Task {
     
     var description: String
     
-    var dueDate: String?
+    var dueDate: String!
     
     enum Priority: Int {
         
-        case Low = 1
+        case Low = 0
         
         case Average
         

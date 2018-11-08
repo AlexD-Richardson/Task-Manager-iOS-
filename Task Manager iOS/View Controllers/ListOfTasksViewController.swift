@@ -21,7 +21,10 @@ class ListOfTasksViewController: UIViewController {
     
     @IBOutlet weak var incompleteTasks: UILabel!
     
+    var currentTask: Task!
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         filterSwitch.backgroundColor = UIColor.red
@@ -38,16 +41,70 @@ class ListOfTasksViewController: UIViewController {
         
         incompleteTasks.text = "Incomplete: \(TaskManager.sharedInstance.incompletedTaskArray.count)"
         
-       
+        if TaskManager.sharedInstance.incompletedTaskArray.count == 0 && TaskManager.sharedInstance.completedTaskArray.count == 0 {
+            
+            showErrorAlert(self, "No Tasks", "There no tasks in the Task Manager.", "Close")
+            
+        } else {
+        
+        totalTasks.text = "Total: \(TaskManager.sharedInstance.completedTaskArray.count + TaskManager.sharedInstance.incompletedTaskArray.count)"
+        
+        completeTasks.text = "Complete: \(TaskManager.sharedInstance.completedTaskArray.count)"
+        
+        incompleteTasks.text = "Incomplete: \(TaskManager.sharedInstance.incompletedTaskArray.count)"
+            
+        }
+        
+        
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        
+        viewDidLoad()
+        
+        taskTableView.reloadData()
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let destination = segue.destination as? EditTaskViewController {
+            
+            destination.taskToEdit = currentTask
+            
+        }
+        
+    }
+    
     
     @IBAction func filterSwitchFlipped(_ sender: Any) {
         
-      taskTableView.reloadData()
+        taskTableView.reloadData()
+        
+        totalTasks.text = "Total: \(TaskManager.sharedInstance.completedTaskArray.count + TaskManager.sharedInstance.incompletedTaskArray.count)"
+        
+        completeTasks.text = "Complete: \(TaskManager.sharedInstance.completedTaskArray.count)"
+        
+        incompleteTasks.text = "Incomplete: \(TaskManager.sharedInstance.incompletedTaskArray.count)"
         
     }
-
+    
+    @IBAction func unwindToListOfTasks(segue: UIStoryboardSegue) { }
+    
 }
+
+
+
+
+
+
+
+
+
+
+
 
 extension ListOfTasksViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -55,7 +112,7 @@ extension ListOfTasksViewController: UITableViewDelegate, UITableViewDataSource 
         
         if filterSwitch.isOn {
             
-             return TaskManager.sharedInstance.completedTaskArray.count
+            return TaskManager.sharedInstance.completedTaskArray.count
             
         } else {
             
@@ -63,7 +120,7 @@ extension ListOfTasksViewController: UITableViewDelegate, UITableViewDataSource 
             
         }
         
-       
+        
         
     }
     
@@ -73,15 +130,17 @@ extension ListOfTasksViewController: UITableViewDelegate, UITableViewDataSource 
         
         if filterSwitch.isOn {
             
-             cell.taskImage.image = UIImage(named: "Checkmark")
+            currentTask = TaskManager.sharedInstance.getCompletedTask(at: indexPath.row)
+            
+            cell.taskImage.image = UIImage(named: "Checkmark")
             
             cell.titleLabel.text = TaskManager.sharedInstance.completedTaskArray[indexPath.row].taskName
             
-            if TaskManager.sharedInstance.completedTaskArray[indexPath.row].taskPriority.rawValue == 1 {
+            if TaskManager.sharedInstance.completedTaskArray[indexPath.row].taskPriority.rawValue == 0 {
                 
                 cell.priorityLabel.text = "Low"
                 
-            } else if TaskManager.sharedInstance.completedTaskArray[indexPath.row].taskPriority.rawValue == 2 {
+            } else if TaskManager.sharedInstance.completedTaskArray[indexPath.row].taskPriority.rawValue == 1 {
                 
                 cell.priorityLabel.text = "Average"
                 
@@ -91,25 +150,22 @@ extension ListOfTasksViewController: UITableViewDelegate, UITableViewDataSource 
                 
             }
             
-            if TaskManager.sharedInstance.completedTaskArray[indexPath.row].dueDate != nil {
-                
-                cell.dueDateLabel.isHidden = false
-                
-                cell.dueDateLabel.text = ""
-                
-            }
+                cell.dueDateLabel.text = TaskManager.sharedInstance.completedTaskArray[indexPath.row].dueDate
+            
             
         } else {
+            
+            currentTask = TaskManager.sharedInstance.getIncompleteTask(at: indexPath.row)
             
             cell.taskImage.image = UIImage(named: "xmark")
             
             cell.titleLabel.text = TaskManager.sharedInstance.incompletedTaskArray[indexPath.row].taskName
             
-            if TaskManager.sharedInstance.incompletedTaskArray[indexPath.row].taskPriority.rawValue == 1 {
+            if TaskManager.sharedInstance.incompletedTaskArray[indexPath.row].taskPriority.rawValue == 0 {
                 
                 cell.priorityLabel.text = "Low"
                 
-            } else if TaskManager.sharedInstance.incompletedTaskArray[indexPath.row].taskPriority.rawValue == 2 {
+            } else if TaskManager.sharedInstance.incompletedTaskArray[indexPath.row].taskPriority.rawValue == 1 {
                 
                 cell.priorityLabel.text = "Average"
                 
@@ -118,12 +174,105 @@ extension ListOfTasksViewController: UITableViewDelegate, UITableViewDataSource 
                 cell.priorityLabel.text = "High"
                 
             }
+            
+                cell.dueDateLabel.text = TaskManager.sharedInstance.incompletedTaskArray[indexPath.row].dueDate
+            
             
         }
         
         return cell
         
     }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (_, _) in
+            
+            if self.filterSwitch.isOn {
+                
+                self.currentTask = TaskManager.sharedInstance.completedTaskArray[indexPath.row]
+                
+                TaskManager.sharedInstance.completedTaskArray.remove(at: indexPath.row)
+                
+            } else {
+                
+                self.currentTask = TaskManager.sharedInstance.incompletedTaskArray[indexPath.row]
+                
+                TaskManager.sharedInstance.incompletedTaskArray.remove(at: indexPath.row)
+                
+            }
+            
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+        }
+        
+        let title: String!
+        
+        if filterSwitch.isOn {
+            
+            title = "Mark Incomplete"
+            
+        } else {
+            
+            title = "Mark Complete"
+            
+        }
+        
+        let markAction = UITableViewRowAction(style: .normal, title: title) { (_, _) in
+            
+            if self.filterSwitch.isOn {
+                
+                self.currentTask = TaskManager.sharedInstance.getCompletedTask(at: indexPath.row)
+                
+                self.currentTask.completionStatus = false
+            TaskManager.sharedInstance.incompletedTaskArray.append(TaskManager.sharedInstance.completedTaskArray.remove(at: indexPath.row))
+                
+                tableView.reloadData()
+                
+            } else {
+                
+                self.currentTask = TaskManager.sharedInstance.getIncompleteTask(at: indexPath.row)
+                
+                self.currentTask.completionStatus = true
+                TaskManager.sharedInstance.completedTaskArray.append(TaskManager.sharedInstance.incompletedTaskArray.remove(at: indexPath.row))
+                
+                tableView.reloadData()
+                
+            }
+            
+        }
+        
+        let showEditScreenAction = UITableViewRowAction(style: .normal, title: "Edit") { (_, _) in
+            
+            if self.filterSwitch.isOn {
+                
+                self.currentTask = TaskManager.sharedInstance.getCompletedTask(at: indexPath.row)
+                
+                self.performSegue(withIdentifier: "ShowEditTaskScreen", sender: self)
+                
+                TaskManager.sharedInstance.completedTaskArray.remove(at: indexPath.row)
+                
+            } else {
+                
+                self.currentTask = TaskManager.sharedInstance.getIncompleteTask(at: indexPath.row)
+                
+        
+                self.performSegue(withIdentifier: "ShowEditTaskScreen", sender: self)
+                
+                
+                TaskManager.sharedInstance.incompletedTaskArray.remove(at: indexPath.row)
+            }
+            
+            
+        }
+        
+        showEditScreenAction.backgroundColor = UIColor.blue
+        
+        
+        return [deleteAction, markAction, showEditScreenAction]
+        
+    }
+    
     
     
     
